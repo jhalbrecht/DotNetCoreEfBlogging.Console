@@ -3,6 +3,7 @@
 
 ## my stuff
 DotNetCoreEfBlogging.Console/Migrations/
+DotNetCoreEfBlogging.Console/DotNetCoreEfBlogging.Console/Migrations/
 
 # User-specific files
 *.suo
