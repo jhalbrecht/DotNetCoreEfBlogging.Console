@@ -32,7 +32,8 @@ namespace DotNetCoreEfBlogging.Console
                 var blogs = bloggingContextAfter.Blogs;
                 Logger.Log($"CheckEmOut count posts in first Blog => {blogs.FirstOrDefault().Posts.Count} <=");
                 var posts = bloggingContextAfter.Posts;
-                // System.Diagnostics.Debugger.Break();
+                Logger.Log("Check out the Blogs in the bloggingContextAfter DbContext. Posts count = 0");
+                Debugger.Break();
             }
         }
 
