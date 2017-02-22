@@ -18,10 +18,10 @@ namespace DotNetCoreEfBlogging.Console
             Logger.Log("You can run SeedEmUp() several times, just be sure you're looking at the last two blogs in the bloggingContext");
             Logger.Log("If you do run SeedEmUp several times you'll note that previous seeds didn't retain their posts, while the bloggingContext, before released, does have the posts for the two blogs just added.");
             SeedEmUp();
-            var db = new BloggingContext();
-            var blogs = db.Blogs.ToList();
-            Logger.Log("The blogingContext is now released from the SeedEmUp using. \r\nCheck for the list of posts in the Blog(s) again from this new db BloggingContext.");
-            Debugger.Break();
+            //var db = new BloggingContext();
+            //var blogs = db.Blogs.ToList();
+            //Logger.Log("The blogingContext is now released from the SeedEmUp using. \r\nCheck for the list of posts in the Blog(s) again from this new db BloggingContext.");
+            //Debugger.Break();
             CheckEmOut();
         }
 
@@ -30,6 +30,11 @@ namespace DotNetCoreEfBlogging.Console
             using (var bloggingContextAfter = new BloggingContext())
             {
                 var blogs = bloggingContextAfter.Blogs;
+                // there is no List<Post> in the bloggingContextAfter.blogs, well it does have a count=0
+                Debugger.Break(); 
+                var ajblogs = bloggingContextAfter.Blogs.Include(b => b.Posts).ToList();
+                // Now the bloggingContextAfter.blogs does contain a List<Post> with a count > 0
+                Debugger.Break(); 
                 Logger.Log($"CheckEmOut count posts in first Blog => {blogs.FirstOrDefault().Posts.Count} <=");
                 var posts = bloggingContextAfter.Posts;
                 Logger.Log("Check out the Blogs in the bloggingContextAfter DbContext. Posts count = 0");
